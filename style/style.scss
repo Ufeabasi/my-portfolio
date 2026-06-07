@@ -1,0 +1,449 @@
+$whiteText: #F7F7F7;
+$blackText: #17191C;
+$lightDarkBackground: #17191C;
+$backgroundLight: #c5c0b2;
+$backgroundDark: #000000;
+$mainPadding: clamp(15px, 4vw, 40px);
+$secondaryRed: firebrick;
+
+// Animation Helpers 
+.overflow-hide { overflow: hidden; position: relative; }
+.text-mask { p { overflow: hidden; margin: 0; } }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: initial; // Crucial override for Lenis dynamic smoothing
+}
+
+body {
+  width: 100%;
+  overflow-x: hidden;
+  background-color: $backgroundLight;
+  font-family: "Satoshi", sans-serif;
+  color: $blackText;
+  font-size: clamp(0.95rem, 1.1vw, 1.2rem);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+//-------------
+// HERO SECTION RESPONSIVENESS
+//-------------
+.hero-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+  width: 100%;
+  padding: $mainPadding;
+
+  .hero-top .nav-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .logo {
+      font-family: "Mak", serif;
+      font-weight: bold;
+      font-size: clamp(1.1rem, 2vw, 1.5rem);
+    }
+
+    nav {
+      display: flex;
+      gap: clamp(15px, 3vw, 30px);
+      .nav-link {
+        font-weight: 500;
+        position: relative;
+        padding-bottom: 2px;
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: 0; left: 0; width: 100%; height: 1px;
+          background: $blackText;
+          transform: scaleX(0); transform-origin: right;
+          transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        &:hover::after { transform: scaleX(1); transform-origin: left; }
+      }
+    }
+
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      .circle {
+        width: 8px; height: 8px;
+        background-color: $backgroundDark;
+        border-radius: 50%;
+      }
+    }
+  }
+
+  .hero-middle {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 40px 0;
+    gap: 40px;
+
+    @media (max-width: 868px) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .position-wrapper {
+      width: 45%;
+      @media (max-width: 868px) { width: 100%; }
+      
+      .position h1 {
+        font-family: "Mak", serif;
+        font-size: clamp(2rem, 4.5vw, 4rem);
+        line-height: 1.1;
+      }
+      .position-cta { margin-top: 25px; }
+    }
+
+    .hero-img-ctn {
+      width: 55%;
+      height: clamp(250px, 35vh, 400px);
+      @media (max-width: 868px) { width: 100%; }
+
+      .hero-line-wrapper {
+        width: 100%;
+        margin-bottom: 12px;
+        .hero-line-ctn {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          .hero-line { background-color: $secondaryRed; height: 1px; flex-grow: 1; margin: 0 15px; }
+          .one, .two { font-family: "Mak", serif; font-size: 0.9rem; }
+        }
+      }
+
+      .hero-img-ctn-wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background-color: $lightDarkBackground;
+        border-radius: 20px;
+        overflow: hidden;
+
+        .hero-img {
+          position: absolute;
+          width: 100%; height: 100%;
+          background: url("/images/Untitled-4.png") no-repeat;
+          background-size: cover;
+          background-position: center;
+        }
+      }
+    }
+  }
+
+  .hero-bottom .bottom-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(0,0,0,0.06);
+    padding-top: 20px;
+    
+    .name {
+      font-family: "Mak", serif;
+      font-size: clamp(2.5rem, 7.5vw, 8rem);
+      line-height: 1;
+      transition: transform 0.3s ease;
+      &:hover { transform: translateY(-5px); color: $secondaryRed; }
+    }
+  }
+}
+
+//-------------
+// INTRO SECTION RESPONSIVENESS
+//-------------
+.intro {
+  background-color: $backgroundDark;
+  width: 100%;
+  min-height: 100vh;
+  color: #F7F7F7;
+  padding: $mainPadding;
+  display: flex;
+  align-items: center;
+
+  .intro-wrapper {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+
+    p {
+      font-size: clamp(2.2rem, 6vw, 6.5rem);
+      font-weight: bold;
+      line-height: 0.95;
+      letter-spacing: -2px;
+    }
+    .emph { font-family: "Mak", serif; color: $secondaryRed; font-weight: normal; }
+
+    .intro-bottom-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 40px;
+      @media (max-width: 768px) { flex-direction: column; align-items: flex-start; }
+
+      .intro-bottom-left {
+        display: flex;
+        flex-direction: column;
+        span { color: #666; font-size: 0.9rem; }
+        .yrs { font-family: "Mak", serif; font-size: clamp(2rem, 4vw, 3.5rem); color: $whiteText; }
+      }
+      .intro-bottom-right { text-align: right; @media (max-width: 768px) { text-align: left; } }
+    }
+  }
+}
+
+//-------------
+// NEW: ABOUT SECTION STYLING
+//-------------
+.about-section {
+  width: 100%;
+  background-color: lighten($backgroundLight, 5%);
+  color: $blackText;
+  padding: clamp(60px, 10vw, 140px) $mainPadding;
+
+  .about-container {
+    max-width: 1400px;
+    margin: 0 auto;
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 60px;
+      @media (max-width: 868px) { grid-template-columns: 1fr; gap: 30px; }
+
+      .about-left-sticky {
+        position: sticky;
+        top: 40px;
+        height: max-content;
+        @media (max-width: 868px) { position: relative; top: 0; }
+
+        .section-tag { font-family: monospace; font-size: 0.85rem; color: $secondaryRed; letter-spacing: 2px; }
+        h2 { font-family: "Mak", serif; font-size: clamp(2.5rem, 4vw, 4rem); font-weight: normal; line-height: 1.1; margin-top: 10px; }
+      }
+
+      .about-content {
+        .reveal-paragraph {
+          font-size: clamp(1.3rem, 2.2vw, 2rem);
+          line-height: 1.4;
+          color: #222;
+          margin-bottom: 30px;
+          &.secondary { font-size: clamp(1.05rem, 1.4vw, 1.3rem); color: #555; line-height: 1.6; }
+        }
+
+        .metrics-row {
+          display: flex;
+          gap: 40px;
+          margin-top: 50px;
+          border-top: 1px solid rgba(0,0,0,0.1);
+          padding-top: 30px;
+
+          .metric-box {
+            .num { font-family: "Mak", serif; font-size: clamp(2rem, 3.5vw, 3.5rem); color: $secondaryRed; }
+            .lbl { font-size: 0.85rem; color: #666; font-family: monospace; text-transform: uppercase; }
+          }
+        }
+      }
+    }
+  }
+}
+
+//-------------
+// SELECTED WORKS RESPONSIVENESS
+//-------------
+.projects {
+  width: 100%;
+  background-color: $lightDarkBackground;
+  color: $whiteText;
+  padding: clamp(60px, 10vw, 120px) $mainPadding;
+
+  .project-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+
+    .section-title { font-family: "Mak", serif; font-size: clamp(2rem, 4vw, 3.5rem); text-align: center; font-weight: normal; }
+    .section-subtitle { color: #666; text-align: center; margin-bottom: clamp(40px, 8vw, 80px); font-size: 1rem; }
+
+    .works-wrapper .works-ctn {
+      display: flex;
+      flex-direction: column;
+
+      .project-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1.2fr;
+        align-items: center;
+        padding: 40px 0;
+        border-top: 1px solid rgba(255,255,255,0.08);
+        gap: 20px;
+
+        @media (max-width: 868px) { grid-template-columns: 1fr; gap: 25px; padding: 30px 0; }
+        &:last-child { border-bottom: 1px solid rgba(255,255,255,0.08); }
+
+        .work-title {
+          display: flex; gap: 10px;
+          .work-num { font-family: monospace; color: #444; font-size: 0.9rem; }
+          .name { font-size: clamp(1.4rem, 2vw, 2.2rem); font-weight: 500; }
+        }
+
+        .works-discription ul {
+          list-style: none;
+          li { color: #888; font-size: 0.95rem; margin-bottom: 4px; }
+        }
+
+        .work-img-wrapper {
+          justify-self: end; width: 100%; max-width: 420px; aspect-ratio: 16 / 10;
+          overflow: hidden; border-radius: 12px;
+          @media (max-width: 868px) { justify-self: start; max-width: 100%; }
+
+          .work-img {
+            width: 100%; height: 100%; background-size: cover; background-position: center;
+            &.work-img-1 { background-image: url("/images/01.jpg"); }
+            &.work-img-2 { background-image: url("/images/02.jpg"); }
+            &.work-img-3 { background-image: url("/images/03.jpg"); }
+          }
+        }
+      }
+    }
+  }
+}
+
+//-------------
+// BENTO TECH STACK RESPONSIVENESS
+//-------------
+.tech-stack {
+  width: 100%;
+  background-color: $backgroundDark;
+  color: $whiteText;
+  padding: clamp(60px, 10vw, 140px) $mainPadding;
+
+  .stack-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    .stack-header {
+      margin-bottom: 50px;
+      h3 { font-family: "Mak", serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: normal; }
+      p { color: #555; margin-top: 5px; }
+    }
+
+    .bento-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 20px;
+      @media (max-width: 968px) { grid-template-columns: 1fr; }
+
+      .bento-card {
+        background: linear-gradient(145deg, rgba(23,25,28,0.8) 0%, rgba(10,11,13,0.95) 100%);
+        border: 1px solid rgba(255,255,255,0.04);
+        border-radius: 16px; padding: clamp(20px, 4vw, 40px);
+        display: flex; flex-direction: column; justify-content: space-between;
+        min-height: 280px; position: relative;
+
+        .card-icon {
+          width: 44px; height: 44px; border-radius: 10px; background: rgba(255,255,255,0.02);
+          border: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center;
+          font-family: monospace; color: #888; font-size: 1.1rem; margin-bottom: 20px;
+        }
+
+        .card-content {
+          h3 { font-size: clamp(1.3rem, 1.8vw, 1.8rem); margin-bottom: 8px; font-weight: 500; }
+          p { color: #7a7e85; font-size: 0.95rem; line-height: 1.5; }
+        }
+
+        .proficiency {
+          margin-top: 30px;
+          .label { font-family: monospace; font-size: 0.7rem; color: #444; display: block; margin-bottom: 6px; }
+          .progress-container {
+            display: flex; align-items: center; justify-content: space-between; gap: 15px;
+            .percentage { font-weight: bold; font-size: 1.1rem; }
+            .progress-bar {
+              width: 120px; height: 3px; background: rgba(255,255,255,0.06); border-radius: 2px; overflow: hidden;
+              .fill { height: 100%; background: #FFF; width: 0%; } // Populated via GSAP mapping securely
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+//-------------
+// FOOTER RESPONSIVENESS
+//-------------
+.contact-footer {
+  width: 100%;
+  background-color: #0b0c0d;
+  color: $whiteText;
+  padding: clamp(60px, 10vw, 120px) $mainPadding 30px $mainPadding;
+
+  .footer-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 60px;
+    @media (max-width: 968px) { grid-template-columns: 1fr; gap: 50px; }
+
+    .footer-cta-column .sticky-cta-content {
+      position: sticky; top: 40px;
+      h2 { font-family: "Mak", serif; font-size: clamp(3rem, 5vw, 5rem); line-height: 1; margin-bottom: 20px; font-weight: normal; }
+      .response-badge { display: inline-block; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; color: #888; margin-bottom: 40px; }
+      .direct-mail {
+        span { display: block; font-family: monospace; font-size: 0.75rem; color: #444; margin-bottom: 5px; }
+        a { font-size: clamp(1.2rem, 2vw, 1.6rem); border-bottom: 1px solid rgba(255,255,255,0.15); &:hover { color: $secondaryRed; border-color: $secondaryRed; } }
+      }
+    }
+
+    .footer-form-column .premium-form {
+      display: flex; flex-direction: column; gap: 30px;
+      
+      .form-group-row {
+        display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+        @media (max-width: 580px) { grid-template-columns: 1fr; }
+      }
+
+      .form-group {
+        display: flex; flex-direction: column; gap: 6px;
+        label { font-family: monospace; font-size: 0.75rem; color: #555; }
+        input, textarea {
+          background: transparent; border: none; border-bottom: 1px solid rgba(255,255,255,0.12);
+          padding: 10px 0; color: $whiteText; font-family: inherit; font-size: 1rem; outline: none;
+          &:focus { border-color: $whiteText; }
+        }
+      }
+
+      .submit-btn {
+        align-self: flex-start; background: $whiteText; color: $backgroundDark; border: none;
+        padding: 16px 36px; border-radius: 30px; font-weight: bold; cursor: pointer;
+        display: flex; align-items: center; gap: 10px; margin-top: 10px; transition: background 0.3s;
+        &:hover { background: $secondaryRed; color: $whiteText; }
+      }
+    }
+  }
+
+  .footer-bottom-bar {
+    max-width: 1400px; margin: 60px auto 0 auto; padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.04); display: flex; justify-content: space-between;
+    font-size: 0.8rem; color: #333;
+    @media (max-width: 580px) { flex-direction: column; gap: 8px; text-align: center; }
+  }
+}
