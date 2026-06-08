@@ -407,10 +407,13 @@ a {
   background-image: url("/images/01.jpg");
 }
 .projects .project-wrapper .works-wrapper .works-ctn .project-row .work-img-wrapper .work-img.work-img-2 {
-  background-image: url("/images/02.jpg");
+  background-image: url("/images/landing.jpg");
 }
 .projects .project-wrapper .works-wrapper .works-ctn .project-row .work-img-wrapper .work-img.work-img-3 {
   background-image: url("/images/03.jpg");
+}
+.projects .project-wrapper .works-wrapper .works-ctn .project-row .work-img-wrapper .work-img.work-img-4 {
+  background-image: url("/images/dash1.jpg");
 }
 
 .tech-stack {
@@ -437,12 +440,12 @@ a {
 }
 .tech-stack .stack-wrapper .bento-grid {
   display: grid;
-  grid-template-columns: 1.3fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
 }
-@media (max-width: 968px) {
+@media (min-width: 968px) {
   .tech-stack .stack-wrapper .bento-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1.3fr 1fr;
   }
 }
 .tech-stack .stack-wrapper .bento-grid .bento-card {
@@ -455,6 +458,11 @@ a {
   justify-content: space-between;
   min-height: 280px;
   position: relative;
+  transition: transform 0.4s ease, border-color 0.4s ease;
+}
+.tech-stack .stack-wrapper .bento-grid .bento-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 255, 255, 0.15);
 }
 .tech-stack .stack-wrapper .bento-grid .bento-card .card-icon {
   width: 44px;
